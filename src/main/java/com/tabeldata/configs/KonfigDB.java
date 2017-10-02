@@ -5,9 +5,9 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 public class KonfigDB {
 
-    private final static String url = "jdbc:postgresql://localhost:5432/bootcamp_latihan";
-    private final static String username = "bootcamp_latihan";
-    private final static String password = "latihan";
+    private final static String url = "jdbc:postgresql://localhost:5432/postgres";
+    private final static String username = "postgres";
+    private final static String password = "postgres";
 
     public static DataSource getDatasource() {
         BasicDataSource ds = new BasicDataSource();

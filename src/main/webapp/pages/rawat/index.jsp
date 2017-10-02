@@ -14,22 +14,23 @@
                 <tr>
                     <td> Kode </td>
                     <td> Nama Pasien </td>
+                    <td> Kode Dokter </td>
                     <td> Nama Dokter </td>
-                    <td> Nama Ruang </td>
-                    <td> Waktu Registrasi </td>
-                    <td> Waktu Pulang </td>
+                    <td> No Ruangan </td>
+                    <td> Tanggal Registrasi </td>
+                    <td> Tanggal Pulang </td>
                     <td> Aksi </td>
                 </tr> 
             </thead>
             <tbody>
-                <c:forEach items="${listRawat}" var="rwt">
+                <c:forEach items="${listRawat}" var="rawat">
                     <tr>
-                        <td>${rwt.id}</td>
-                        <td>${rwt.pasien.nama}</td>
-                        <td>${rwt.dokter.nama}</td>
-                        <td>${rwt.ruang.nama}</td>
-                        <td>${rwt.register}</td>
-                        <td>${rwt.checkout}</td>
+                        <td>${rawat.id}</td>
+                        <td>${rawat.pasien.nama}</td>
+                        <td>${rawat.dokter.nama}</td>
+                        <td>${rawat.ruang.nama}</td>
+                        <td>${rawat.register}</td>
+                        <td>${rawat.checkout}</td>
                         
                         <td></td>
                     </tr>

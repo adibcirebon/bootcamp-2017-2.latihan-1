@@ -1,8 +1,6 @@
 package com.tabeldata.model;
 
-import java.lang.Object;
-import java.util.Date;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Rawat {
 
@@ -10,8 +8,8 @@ public class Rawat {
     private Pasien pasien;
     private Dokter dokter;
     private Ruang ruang;
-    private Timestamp waktu_register;
-    private Timestamp waktu_checkout;
+    private Date tanggalRegister;
+    private Date tanggalCheckout;
 
     public Integer getId() {
         return id;
@@ -44,21 +42,23 @@ public class Rawat {
     public void setRuang(Ruang ruang) {
         this.ruang = ruang;
     }
-    
-    public Date getWaktuRegister() {
-        return waktu_register;
+
+    public Date getTanggalRegister() {
+        return tanggalRegister;
     }
 
-    public void setWaktuRegister(Timestamp waktu_register) {
-        this.waktu_register = waktu_register;
-    }
-    
-    public Date getWaktuCheckout() {
-        return waktu_checkout;
+    public void setTanggalRegister(Date tanggalRegister) {
+        this.tanggalRegister = tanggalRegister;
     }
 
-    public void setWaktuCheckout(Timestamp waktu_checkout) {
-        this.waktu_checkout = waktu_checkout;
+    public Date getTanggalCheckout() {
+        return tanggalCheckout;
     }
+
+    public void setTanggalCheckout(Date tanggalCheckout) {
+        this.tanggalCheckout = tanggalCheckout;
+    }
+
+    
 
 }

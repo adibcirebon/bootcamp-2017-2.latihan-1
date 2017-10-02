@@ -3,8 +3,8 @@ package com.tabeldata.model;
 public class Ruang {
 
     private Integer id;
-    private String no_ruangan;
-    private boolean kosong;
+    private String noRuangan;
+    private Boolean kosong;
 
     public Integer getId() {
         return id;
@@ -15,19 +15,23 @@ public class Ruang {
     }
 
     public String getNoRuangan() {
-        return no_ruangan;
+        return noRuangan;
     }
 
-    public void setNoRuangan(String no_ruangan) {
-        this.no_ruangan = no_ruangan;
+    public void setNoRuangan(String noRuangan) {
+        this.noRuangan = noRuangan;
     }
 
-    public boolean getKosong() {
+    public Boolean getKosong() {
         return kosong;
     }
 
-    public void setKosong(boolean kosong) {
+    public void setKosong(Boolean kosong) {
         this.kosong = kosong;
     }
+
+    
+
+   
 
 }

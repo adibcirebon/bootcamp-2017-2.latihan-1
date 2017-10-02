@@ -5,7 +5,6 @@ public class Dokter {
     private Integer id;
     private String nama;
     private String spesialis;
-    
 
     public Integer getId() {
         return id;
@@ -30,5 +29,8 @@ public class Dokter {
     public void setSpesialis(String spesialis) {
         this.spesialis = spesialis;
     }
+    
+
+    
 
 }
