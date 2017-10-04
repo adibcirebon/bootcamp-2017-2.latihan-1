@@ -1,13 +1,15 @@
 package com.tabeldata.model;
 
-import java.util.Date;
+import java.sql.Date;
+
+
 
 public class Pasien {
 
     private Integer id;
     private String nama;
     private String alamat;
-    private Date tanggal_lahir;
+    private Date tanggalLahir;
 
     public Integer getId() {
         return id;
@@ -34,11 +36,11 @@ public class Pasien {
     }
     
     public Date getTanggalLahir() {
-        return this.tanggal_lahir;
+        return this.tanggalLahir;
     }
 
-    public void setTanggalLahir(Date x) {
-        this.tanggal_lahir = x;
+    public void setTanggalLahir(Date tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
     }
 
 }

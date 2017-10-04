@@ -25,16 +25,11 @@ public class RawatListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
-    
-    
-        try {
-            RawatDao dao = new RawatDao();
-            List<Rawat> listData = dao.semuaData();
-            req.setAttribute("listRawat", listData);
-            req.getRequestDispatcher("/pages/rawat/index.jsp").forward(req, resp);
-        } catch (SQLException ex) {
-            Logger.getLogger(RawatListController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        RawatDao dao = new RawatDao();
+        //List<Rawat> listData = dao.semuaData();
+        List<Rawat> listData = dao.semuaDataRawat();
+        req.setAttribute("listRawat", listData);
+        req.getRequestDispatcher("/pages/rawat/index.jsp").forward(req, resp);
             
     }
  

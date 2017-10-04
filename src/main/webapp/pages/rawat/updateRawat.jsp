@@ -13,10 +13,11 @@
         <title>Tambah Data Rawat</title>
     </head>
     <body>
-        <form action="${pageContext.servletContext.contextPath}/rawat/update-proses" method="post">
+        <form action="${pageContext.servletContext.contextPath}/rawat/update/proses" method="post">
+            <input type="hidden" name="hiddenRawatId" value="${rawat.id}">
             <div>
                 <label for="pasienId">Pilih Pasien</label>
-                <select name="selectPasienId" id="pasienId">
+                <select name="selectPasienId" id="pasienId" disabled>
                     <c:forEach items="${listPasien}" var="d">
                         <option value="${d.id}">${d.nama}</option>
                     </c:forEach>
@@ -26,7 +27,8 @@
                 <label for="dokterId">Pilih Dokter</label>
                 <select name="selectDokterId" id="dokterId">
                     <c:forEach items="${listDokter}" var="d">
-                        <option value="${d.id}">${d.nama}</option>
+                        <c:if test="${rawat.dokter.id == d.id}" var="isTrue"/>
+                        <option value="${d.id}" ${isTrue == true ? 'selected' :''}>${d.nama}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -34,7 +36,8 @@
                 <label for="ruangId">Pilih Ruang</label>
                 <select name="selectRuangId" id="ruangId">
                     <c:forEach items="${listRuangan}" var="d">
-                        <option value="${d.id}">${d.noRuangan}</option>
+                        <c:if test="${rawat.ruang.id == d.id}" var="isTrueRuangan"/>
+                        <option value="${d.id}" ${isTrueRuangan == true ? 'selected' :''}>${d.noRuangan}</option>
                     </c:forEach>
                 </select>
             </div>

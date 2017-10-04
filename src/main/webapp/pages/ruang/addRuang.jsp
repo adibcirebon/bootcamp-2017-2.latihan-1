@@ -8,20 +8,20 @@
     </head>
     <body>
         <h1>Form Ruang</h1>
+        <!--${pageContext.servletContext.contextPath}-->
         <form action="${pageContext.servletContext.contextPath}/ruang/new" method="post">
             <div>
-                <label for="ruangName">Nama Ruang</label>
-                <input type="text" name="ruangName" id="ruangName">
+                <label for="No_ruangan">No Ruangan</label>
+                <input type="text" name="No_ruangan" id="No_ruangan"
             </div>
             <div>
                 <label for="ruangKosong">Kosong</label>
-                <input type="text" name="ruangKosong" id="ruangKosong">
+                <input type="text" name="ruangKosong" id="ruangKosong"
             </div>
-            <div> 
+            <div>
                 <button type="submit">Kirim</button>
                 <button type="reset">Reset</button>
             </div>
-            
         </form>
     </body>
 </html>

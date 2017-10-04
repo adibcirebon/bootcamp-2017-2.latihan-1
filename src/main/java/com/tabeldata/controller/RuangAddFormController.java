@@ -21,8 +21,9 @@ public class RuangAddFormController extends HttpServlet {
         //   super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
         Ruang ruangBaru = new Ruang();
 
-        ruangBaru.setNoRuangan(req.getParameter("ruangNoRuangan"));
-        ruangBaru.setKosong(false);
+        //ruangBaru.setNo_ruangan(req.getParameter("No_ruangan"));
+        ruangBaru.setNo_ruangan(req.getParameter("No_ruangan"));
+        ruangBaru.setKosong(Boolean.valueOf(req.getParameter("ruangKosong")));
 
         RuangDao ruangDao = new RuangDao();
         ruangDao.save(ruangBaru);

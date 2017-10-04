@@ -1,41 +1,51 @@
 
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>DAFTAR RAWAT PASIEN</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <table>
+        <h1>Daftar Rawat</h1>
+        <a href="${pageContext.servletContext.contextPath}/rawat/new" class="btn btn-primary">Add</a>
+        &nbsp;
+        <table border="1">
             <thead>
                 <tr>
-                    <td> Kode </td>
-                    <td> Nama Pasien </td>
-                    <td> Kode Dokter </td>
-                    <td> Nama Dokter </td>
-                    <td> No Ruangan </td>
-                    <td> Tanggal Registrasi </td>
-                    <td> Tanggal Pulang </td>
-                    <td> Aksi </td>
-                </tr> 
+                    <th>Kode</th>
+                    <th>Pasien</th>
+                    <th>Dokter</th>
+                    <th>Ruang</th>
+                    <th>Waktu Register</th>
+                    <th>Waktu Checkout</th>
+                    <th>Aksi</th>
+                </tr>
             </thead>
             <tbody>
-                <c:forEach items="${listRawat}" var="rawat">
-                    <tr>
-                        <td>${rawat.id}</td>
-                        <td>${rawat.pasien.nama}</td>
-                        <td>${rawat.dokter.nama}</td>
-                        <td>${rawat.ruang.nama}</td>
-                        <td>${rawat.register}</td>
-                        <td>${rawat.checkout}</td>
-                        
-                        <td></td>
-                    </tr>
+            <c:forEach items="${listRawat}" var="rwt">
+                <tr>
+                    <td>${rwt.id}</td>
+                    <td>${rwt.pasienId.nama}</td>
+                    <td>${rwt.dokterId.nama}</td>
+                    <td>${rwt.ruangId.no_ruangan}</td>
+                    <td>${rwt.tanggalRegister}</td>
+                    <td>${rwt.tanggalCheckout}</td>
+                    <td>
+                        <a href="${pageContext.servletContext.contextPath}/rawat/update?id=${rwt.id}">Update</a>
+                    </td>    
+                    &nbsp;
+                    <td>
+                     <form action="${pageContext.servletContext.contextPath}/rawat/delete?id=${rwt.id}" method="post">
+                     <input type="hidden" name="rawatId" value="${rwt.id}">    
+                         <button type="submit">Hapus</button>
+                    </td>
+                </tr>
                 </c:forEach>
             </tbody>
         </table>
+
     </body>
 </html>

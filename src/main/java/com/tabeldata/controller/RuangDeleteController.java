@@ -17,7 +17,7 @@ public class RuangDeleteController extends HttpServlet {
         //super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
         Integer idRuang = Integer.valueOf(req.getParameter("ruangId"));
         RuangDao ruangDao = new RuangDao();
-        ruangDao.hapusDataById(idRuang);
+        ruangDao.hapusRuangById(idRuang);
         resp.sendRedirect(req.getServletContext().getContextPath() + "/ruang/list");
     }
 
@@ -26,7 +26,7 @@ public class RuangDeleteController extends HttpServlet {
         //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         Integer idRuang = Integer.valueOf(req.getParameter("ruangId"));
         RuangDao ruangDao = new RuangDao();
-        ruangDao.hapusDataById(idRuang);
+        ruangDao.hapusRuangById(idRuang);
         resp.sendRedirect(req.getServletContext().getContextPath() + "/ruang/list");
 
     }

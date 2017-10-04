@@ -17,7 +17,7 @@ public class PasienDeleteController extends HttpServlet {
         //super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
         Integer idPasien = Integer.valueOf(req.getParameter("pasienId"));
         PasienDao pasienDao = new PasienDao();
-        pasienDao.hapusDataById(idPasien);
+        pasienDao.hapusPasienById(idPasien);
         resp.sendRedirect(req.getServletContext().getContextPath() + "/pasien/list");
     }
 
@@ -26,7 +26,7 @@ public class PasienDeleteController extends HttpServlet {
         //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         Integer idPasien = Integer.valueOf(req.getParameter("pasienId"));
         PasienDao pasienDao = new PasienDao();
-        pasienDao.hapusDataById(idPasien);
+        pasienDao.hapusPasienById(idPasien);
         resp.sendRedirect(req.getServletContext().getContextPath() + "/pasien/list");
 
     }

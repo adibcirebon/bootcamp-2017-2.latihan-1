@@ -1,15 +1,16 @@
 package com.tabeldata.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Rawat {
 
     private Integer id;
-    private Pasien pasien;
-    private Dokter dokter;
-    private Ruang ruang;
-    private Date tanggalRegister;
-    private Date tanggalCheckout;
+    private Pasien pasienId;
+    private Dokter dokterId;
+    private Ruang ruangId;
+    private Timestamp tanggalRegister;
+    private Timestamp tanggalCheckout;
 
     public Integer getId() {
         return id;
@@ -19,46 +20,44 @@ public class Rawat {
         this.id = id;
     }
 
-    public Pasien getPasien() {
-        return pasien;
+    public Pasien getPasienId() {
+        return pasienId;
     }
 
-    public void setPasien(Pasien pasien) {
-        this.pasien = pasien;
+    public void setPasienId(Pasien pasienId) {
+        this.pasienId = pasienId;
     }
 
-    public Dokter getDokter() {
-        return dokter;
+    public Dokter getDokterId() {
+        return dokterId;
     }
 
-    public void setDokter(Dokter dokter) {
-        this.dokter = dokter;
+    public void setDokterId(Dokter dokterId) {
+        this.dokterId = dokterId;
     }
 
-    public Ruang getRuang() {
-        return ruang;
+    public Ruang getRuangId() {
+        return ruangId;
     }
 
-    public void setRuang(Ruang ruang) {
-        this.ruang = ruang;
+    public void setRuangId(Ruang ruangId) {
+        this.ruangId = ruangId;
     }
 
-    public Date getTanggalRegister() {
+    public Timestamp getTanggalRegister() {
         return tanggalRegister;
     }
 
-    public void setTanggalRegister(Date tanggalRegister) {
+    public void setTanggalRegister(Timestamp tanggalRegister) {
         this.tanggalRegister = tanggalRegister;
     }
 
-    public Date getTanggalCheckout() {
+    public Timestamp getTanggalCheckout() {
         return tanggalCheckout;
     }
 
-    public void setTanggalCheckout(Date tanggalCheckout) {
+    public void setTanggalCheckout(Timestamp tanggalCheckout) {
         this.tanggalCheckout = tanggalCheckout;
     }
-
-    
 
 }

@@ -26,9 +26,9 @@ public class PasienAddFormController extends HttpServlet {
      //   super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
     Pasien pasienBaru= new Pasien();
     
-    pasienBaru.setNama(req.getParameter("pasienName"));
+    pasienBaru.setNama(req.getParameter("pasienNama"));
     pasienBaru.setAlamat(req.getParameter("pasienAlamat"));
-    pasienBaru.setTanggalLahir(Date.valueOf("tanggal_lahir"));
+    pasienBaru.setTanggalLahir(java.sql.Date.valueOf(req.getParameter("pasienTanggalLahir")));
     
     PasienDao pasienDao = new PasienDao();
     pasienDao.save(pasienBaru);

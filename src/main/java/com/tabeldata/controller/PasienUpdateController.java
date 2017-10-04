@@ -5,6 +5,8 @@ import com.tabeldata.dao.PasienDao;
 import com.tabeldata.model.Pasien;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +38,10 @@ public class PasienUpdateController extends HttpServlet {
 
         Pasien pasienBaru = new Pasien();
         pasienBaru.setId(Integer.valueOf(req.getParameter("pasienId")));
-        pasienBaru.setNama(req.getParameter("pasienName"));
-        pasienBaru.setTanggalLahir(Date.valueOf("tanggal_lahir"));
-
+        pasienBaru.setNama(req.getParameter("pasienNama"));
+        pasienBaru.setTanggalLahir(java.sql.Date.valueOf(req.getParameter("pasienTanggalLahir")));
+        
+        
         PasienDao pasienDao = new PasienDao();
         pasienDao.update(pasienBaru);
         

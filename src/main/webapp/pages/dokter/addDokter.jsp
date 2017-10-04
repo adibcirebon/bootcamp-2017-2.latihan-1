@@ -13,20 +13,20 @@
     </head>
     <body>
         <h1>Form Dokter</h1>
+        <!--${pageContext.servletContext.contextPath}-->
         <form action="${pageContext.servletContext.contextPath}/dokter/new" method="post">
             <div>
-                <label for="DokterName">Nama Dokter</label>
-                <input type="text" name="dokterName" id="dokterName">
+                <label for="dokterNama">Nama Dokter</label>
+                <input type="text" name="dokterNama" id="dokterNama"
             </div>
             <div>
-                <label for="DokterSpesialis">Spesialis</label>
-                <input type="text" name="dokterSpesialis" id="dokterSpesialis">
+                <label for="dokterSpesialis">Spesialis</label>
+                <input type="text" name="dokterSpesialis" id="dokterSpesialis"
             </div>
-            <div> 
+            <div>
                 <button type="submit">Kirim</button>
                 <button type="reset">Reset</button>
             </div>
-            
         </form>
     </body>
 </html>

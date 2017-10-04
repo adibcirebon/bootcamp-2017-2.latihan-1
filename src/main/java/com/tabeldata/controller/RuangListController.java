@@ -20,8 +20,8 @@ public class RuangListController extends HttpServlet {
         //  super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
 
         RuangDao ruangDao = new RuangDao();
-        List<Ruang> dataRuang = ruangDao.semuaDataRuang();
-
+        List<Ruang> dataRuang = ruangDao.semuaDataRuang(Boolean.TRUE);
+        
         req.setAttribute("listRuang", dataRuang);
         req.getRequestDispatcher("/pages/ruang/index.jsp").forward(req, resp);
     }

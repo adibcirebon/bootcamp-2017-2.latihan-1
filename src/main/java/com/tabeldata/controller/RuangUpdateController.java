@@ -33,12 +33,13 @@ public class RuangUpdateController extends HttpServlet {
 
         Ruang ruangBaru = new Ruang();
         ruangBaru.setId(Integer.valueOf(req.getParameter("ruangId")));
-        ruangBaru.setNoRuangan(req.getParameter("ruangNoRuangan"));
+        //ruangBaru.setNoRuangan(req.getParameter("ruangNoRuangan"));
+        ruangBaru.setNo_ruangan(req.getParameter("No_ruangan"));
         ruangBaru.setKosong(Boolean.valueOf(req.getParameter("ruangKosong")));
         RuangDao ruangDao = new RuangDao();
         ruangDao.update(ruangBaru);
         
-        resp.sendRedirect(req.getServletContext().getContextPath () +"/dokter/list");
+        resp.sendRedirect(req.getServletContext().getContextPath () +"/ruang/list");
 
     }
 

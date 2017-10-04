@@ -1,69 +1,205 @@
 package com.tabeldata.dao;
 
-import com.tabeldata.configs.DatabaseKonfigurasi;
+import com.tabeldata.configs.KonfigDB;
 import com.tabeldata.model.Dokter;
 import com.tabeldata.model.Pasien;
 import com.tabeldata.model.Rawat;
 import com.tabeldata.model.Ruang;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ *
+ * @author Diani
+ */
 public class RawatDao {
 
-    public List<Rawat> semuaData() throws SQLException {
-        List<Rawat> listData = new ArrayList<>();
+    public List<Rawat> semuaDataRawat() {
+        List<Rawat> listRawat = new ArrayList<>();
 
-        String sql = "select\n"
-                + " rwt.id as rawat_id,\n"
-                + " rwt.pasien_id as pasien_id,\n"
-                + " psn.nama as pasien_nama,\n"
-                + " rwt.dokter_id,\n"
-                + " dkr.nama as dokter_nama,\n"
-                + " rwt.ruang_id,\n"
-                + " rng.no_ruangan ruang_no,\n"
-                + " rng.kosong as ruang_kosong,\n"
-                + " rwt.waktu_register as rawat_register,\n"
-                + " rwt.waktu_checkout as rawat_checkout\n"
-                + " FROM latihan_1.rawat rwt\n"
-                + " JOIN latihan_1.pasien psn ON rwt.pasien_id = psn.id\n"
-                + " JOIN latihan_1.dokter dkr ON rwt.dokter_id = dkr.id\n"
-                + " JOIN latihan_1.ruang rng ON rwt.ruang_id = rng.id\n";
+        String sql = "Select\n"
+                + "rwt.id as id_rawat,\n"
+                + "rwt.waktu_register as waktu_register,\n"
+                + "rwt.waktu_checkout as waktu_checkout,\n"
+                + "pasien.id as id_pasien,\n"
+                + "pasien.nama as nama_pasien,\n"
+                + "pasien.alamat as alamat_pasien,\n"
+                + "pasien.tanggal_lahir as tanggal_lahir_pasien,\n"
+                + "dokter.id as id_dokter,\n"
+                + "dokter.nama as nama_dokter,\n"
+                + "dokter.spesialis as spesialis_dokter,\n"
+                + "ruang.id as id_ruang,\n"
+                + "ruang.no_ruangan as no_ruangan_ruang,\n"
+                + "ruang.kosong as kosong_ruang\n"
+                + "from latihan_1.rawat rwt\n"
+                + "join latihan_1.pasien pasien on (rwt.pasien_id = pasien.id)\n"
+                + "join latihan_1.dokter dokter on (rwt.dokter_id = dokter.id)\n"
+                + "join latihan_1.ruang ruang on (rwt.ruang_id = ruang.id)";
 
-        Connection connection = new DatabaseKonfigurasi().getDatasource().getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
-      
-        while (resultSet.next()){
-         //tampung nilai dari database ke object java dengan tipe rawat
-        Rawat rwt = new Rawat();
-        rwt.setId(resultSet.getInt("rawat_id"));
-        Dokter dokter = new Dokter();
-        dokter.setId(resultSet.getInt("dokter_id"));
-        dokter.setNama(resultSet.getString("dokter_nama"));
-        rwt.setDokter(dokter);
-        
-        Pasien pasien = new Pasien();
-        pasien.setId(resultSet.getInt("pasien_id"));
-        pasien.setNama(resultSet.getString("dokter_nama"));
-        rwt.setPasien(pasien);
-        
-        Ruang ruang = new Ruang();
-        ruang.setId(resultSet.getInt("ruang_id"));
-        ruang.setNoRuangan("ruang_no");
-        rwt.setRuang(ruang);
-        
-        rwt.setTanggalRegister(resultSet.getDate("rawat_register"));
-        rwt.setTanggalCheckout(resultSet.getDate("rawat_checkout"));
-            
-        }  
-        resultSet.close();
-        statement.clearBatch();
-        connection.close();
-        return listData;
+        try {
+            //Connection connection = KonfigDB.getDataSource().getConnection();
+            Connection connection = KonfigDB.getDatasource().getConnection();
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+
+                Rawat rwt = new Rawat();
+                rwt.setId(rs.getInt("id_rawat"));
+
+                Pasien pasien = new Pasien();
+                pasien.setId(rs.getInt("id_pasien"));
+                pasien.setNama(rs.getString("nama_pasien"));
+                pasien.setAlamat(rs.getString("alamat_pasien"));
+                pasien.setTanggalLahir(rs.getDate("tanggal_lahir_pasien"));
+                rwt.setPasienId(pasien);
+
+                Dokter dokter = new Dokter();
+                dokter.setId(rs.getInt("id_dokter"));
+                dokter.setNama(rs.getString("nama_dokter"));
+                dokter.setSpesialis(rs.getString("spesialis_dokter"));
+                rwt.setDokterId(dokter);
+
+                Ruang ruang = new Ruang();
+                ruang.setId(rs.getInt("id_ruang"));
+                ruang.setNo_ruangan(rs.getString("no_ruangan_ruang"));
+                ruang.setKosong(rs.getBoolean("kosong_ruang"));
+                rwt.setRuangId(ruang);
+
+                rwt.setTanggalRegister(rs.getTimestamp("waktu_register"));
+                rwt.setTanggalCheckout(rs.getTimestamp("waktu_checkout"));
+
+                listRawat.add(rwt);
+            }
+
+            rs.close();
+            st.close();
+            connection.close();
+
+        } catch (SQLException error) {
+            error.printStackTrace();
+        }
+        return listRawat;
+
     }
+
+    public void simpanRawat(Rawat rwt) throws SQLException {
+
+        String sql = "insert into latihan_1.rawat (pasien_id, dokter_id, ruang_id, waktu_register, waktu_checkout)"
+                + "values (?, ?, ?, ?, ?)";
+
+        Connection connection = KonfigDB.getDatasource().getConnection();
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, rwt.getPasienId().getId());
+        ps.setInt(2, rwt.getDokterId().getId());
+        ps.setInt(3, rwt.getRuangId().getId());
+        ps.setTimestamp(4, rwt.getTanggalRegister());
+        ps.setTimestamp(5, rwt.getTanggalCheckout());
+
+        ps.executeUpdate();
+
+        sql = "update latihan_1.ruang set kosong = FALSE WHERE id = ?";
+        ps = connection.prepareStatement(sql);
+        ps.setInt(1, rwt.getRuangId().getId());
+        ps.executeUpdate();
+        ps.close();
+        connection.close();
+
+    }
+
+    public Rawat cariRawatDenganId(Integer id) {
+        try {
+            Connection koneksi = KonfigDB.getDatasource().getConnection();
+            String sql = "select * from latihan_1.rawat where id = ? ";
+            PreparedStatement ps = koneksi.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            Rawat rawat = new Rawat();
+            if (rs.next()) {
+                rawat.setId(rs.getInt("id"));
+
+                Pasien pasien = new Pasien();
+                pasien.setId(rs.getInt("pasien_id"));
+                rawat.setPasienId(pasien);
+
+                Dokter dokter = new Dokter();
+                dokter.setId(rs.getInt("dokter_id"));
+                rawat.setDokterId(dokter);
+
+                Ruang ruang = new Ruang();
+                ruang.setId(rs.getInt("ruang_id"));
+                rawat.setRuangId(ruang);
+
+                rawat.setTanggalRegister(rs.getTimestamp("waktu_register"));
+                rawat.setTanggalRegister(rs.getTimestamp("waktu_register"));
+            }
+            return rawat;
+        } catch (SQLException ex) {
+            Logger.getLogger(RawatDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public void update(Integer id, Integer pasienId, Integer dokterId, Integer ruangId, Timestamp waktuRegister, Timestamp waktuCheckout) {
+
+        try {
+            Connection koneksi = KonfigDB.getDatasource().getConnection();
+            String sql = "update latihan_1.rawat set pasien_id = ?, dokter_id = ?, ruang_id = ?, waktu_register = ?, waktu_checkout = ? where id = ?";
+            PreparedStatement ps = koneksi.prepareStatement(sql);
+            
+            ps.setInt(1, pasienId);
+            ps.setInt(2, dokterId);
+            ps.setInt(3, ruangId);
+            ps.setTimestamp(4, waktuRegister);
+            ps.setTimestamp(5, waktuCheckout);
+            ps.setInt(6, id);
+            ps.executeUpdate();
+
+            sql = "update latihan_1.ruang set kosong = FALSE WHERE id = ?";
+            ps = koneksi.prepareStatement(sql);
+            ps.setInt(1, ruangId);
+            ps.executeUpdate();
+
+            ps.close();
+            koneksi.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RawatDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void hapusRawatById(Rawat rwt) {
+        String sql = "delete from latihan_1.rawat where id = ?";
+
+        try {
+            //Connection conection = KonfigDB.getDataSource().getConnection();
+            Connection connection = KonfigDB.getDatasource().getConnection();
+            //PreparedStatement ps = conection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, rwt.getId());
+            ps.executeUpdate();
+
+            sql = "update latihan_1.ruang set kosong = true WHERE id = ?";
+            ps = connection.prepareStatement(sql);
+            System.out.println(rwt.getRuangId().getId());
+            ps.setInt(1, rwt.getRuangId().getId());
+            ps.executeUpdate();
+
+            ps.close();
+            connection.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RawatDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 }

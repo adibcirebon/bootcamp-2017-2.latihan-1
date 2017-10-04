@@ -23,7 +23,7 @@ public class DokterAddFormController extends HttpServlet {
      //   super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
     Dokter dokterBaru= new Dokter();
     
-    dokterBaru.setNama(req.getParameter("dokterName"));
+    dokterBaru.setNama(req.getParameter("dokterNama"));
     dokterBaru.setSpesialis(req.getParameter("dokterSpesialis"));
     
     DokterDao dokterDao = new DokterDao();
@@ -32,4 +32,13 @@ public class DokterAddFormController extends HttpServlet {
     resp.sendRedirect(req.getServletContext().getContextPath()+"/dokter/list");
     }
    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
+        //Integer idDokter = Integer.valueOf((req.getParameter("dokterId")));
+        DokterDao dokterDao = new DokterDao();
+        //dokterDao.hapusDokterById(idDokter);
+        //dokterDao.cariDokterDenganId(idDokter);
+        resp.sendRedirect(req.getServletContext().getContextPath() + "/dokter/list");
+        }
 }
