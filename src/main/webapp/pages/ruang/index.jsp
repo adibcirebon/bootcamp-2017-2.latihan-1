@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>Daftar Ruang</h1>
+        <a href="${pageContext.servletContext.contextPath}/ruang/new">Add</a>
         <table border="1">
             <thead>
                 <tr>
@@ -29,12 +30,13 @@
                         <td>
                             <a href="${pageContext.servletContext.contextPath}/ruang/update?id=${r.id}">Update</a>
                             &nbsp;
-                            <form action="${pageContext.servletContext.contextPath}/ruang/delete" method="post">
+                            <a href="${pageContext.servletContext.contextPath}/ruang/delete?id=${r.id}">Delete</a>
+                            
+<!--                            <form action="${pageContext.servletContext.contextPath}/ruang/delete" method="post">
                                 <input type="hidden" name="ruangId" value="${r.id}">
                                 <button type="submit">Hapus</button>
                                 </input>
-
-                            </form>
+                            </form>-->
                         </td>
                     </tr>
                 </c:forEach>

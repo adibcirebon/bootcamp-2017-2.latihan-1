@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1>Daftar Rawat</h1>
-        <a href="${pageContext.servletContext.contextPath}/rawat/new" class="btn btn-primary">Add</a>
+        <a href="${pageContext.servletContext.contextPath}/rawat/new">Add</a>
         &nbsp;
         <table border="1">
             <thead>
@@ -35,13 +35,15 @@
                     <td>${rwt.tanggalCheckout}</td>
                     <td>
                         <a href="${pageContext.servletContext.contextPath}/rawat/update?id=${rwt.id}">Update</a>
+                        &nbsp;
+                        <a href="${pageContext.servletContext.contextPath}/rawat/delete?id=${rwt.id}">Delete</a>
                     </td>    
-                    &nbsp;
-                    <td>
+                    
+<!--                    <td>
                      <form action="${pageContext.servletContext.contextPath}/rawat/delete?id=${rwt.id}" method="post">
                      <input type="hidden" name="rawatId" value="${rwt.id}">    
                          <button type="submit">Hapus</button>
-                    </td>
+                    </td>-->
                 </tr>
                 </c:forEach>
             </tbody>

@@ -31,12 +31,13 @@
                         <td>
                             <a href="${pageContext.servletContext.contextPath}/dokter/update?id=${d.id}">Update</a>
                             &nbsp;
+                            <a href="${pageContext.servletContext.contextPath}/dokter/delete?dokterId=${d.id}">Delete</a>
 <!--                            <form action="${pageContext.servletContext.contextPath}/dokter/delete" method="post">
                                 <input type="hidden" name="dokterId" value="${d.id}">
                                 <button type="submit">Hapus</button>
                                 </input>
                             </form>-->
-                            <a href="${pageContext.servletContext.contextPath}/dokter/delete?dokterId=${d.id}">Delete</a>
+                            
                         </td>
                     </tr>
                 </c:forEach>

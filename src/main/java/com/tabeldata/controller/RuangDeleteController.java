@@ -1,4 +1,3 @@
-
 package com.tabeldata.controller;
 
 import com.tabeldata.dao.RuangDao;
@@ -21,14 +20,20 @@ public class RuangDeleteController extends HttpServlet {
         resp.sendRedirect(req.getServletContext().getContextPath() + "/ruang/list");
     }
 
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
+//        Integer idRuang = Integer.valueOf(req.getParameter("ruangId"));
+//        RuangDao ruangDao = new RuangDao();
+//        ruangDao.hapusRuangById(idRuang);
+//        resp.sendRedirect(req.getServletContext().getContextPath() + "/ruang/list");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
+        //uper.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         Integer idRuang = Integer.valueOf(req.getParameter("ruangId"));
         RuangDao ruangDao = new RuangDao();
         ruangDao.hapusRuangById(idRuang);
         resp.sendRedirect(req.getServletContext().getContextPath() + "/ruang/list");
-
     }
 
 }

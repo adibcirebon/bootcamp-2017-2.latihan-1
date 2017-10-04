@@ -1,4 +1,3 @@
-
 package com.tabeldata.controller;
 
 import com.tabeldata.model.Rawat;
@@ -21,6 +20,20 @@ public class RawatDeleteController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
 
+        Rawat rwt = new Rawat();
+        rwt.setId(Integer.valueOf(req.getParameter("rawatId")));
+
+        rwt = new RawatDao().cariRawatDenganId(rwt.getId());
+
+        RawatDao rawatDao = new RawatDao();
+        rawatDao.hapusRawatById(rwt);
+        resp.sendRedirect(req.getServletContext().getContextPath() + "/rawat/list");
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // super.doGet(req, resp); //To change body of generated methods, choose Tools | Templates.
         Rawat rwt = new Rawat();
         rwt.setId(Integer.valueOf(req.getParameter("rawatId")));
 

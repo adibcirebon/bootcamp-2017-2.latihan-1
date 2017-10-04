@@ -6,8 +6,6 @@ package com.tabeldata.controller;
 import com.tabeldata.dao.PasienDao;
 import com.tabeldata.model.Pasien;
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +26,7 @@ public class PasienAddFormController extends HttpServlet {
     
     pasienBaru.setNama(req.getParameter("pasienNama"));
     pasienBaru.setAlamat(req.getParameter("pasienAlamat"));
+    //pasienBaru.setTanggalLahir(java.sql.Date.valueOf(req.getParameter("pasienTanggalLahir")));
     pasienBaru.setTanggalLahir(java.sql.Date.valueOf(req.getParameter("pasienTanggalLahir")));
     
     PasienDao pasienDao = new PasienDao();
@@ -35,5 +34,13 @@ public class PasienAddFormController extends HttpServlet {
        
     resp.sendRedirect(req.getServletContext().getContextPath()+"/pasien/list");
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/pages/pasien/addPasien.jsp").forward(req, resp);
+        
+    }
+    
+    
    
 }
