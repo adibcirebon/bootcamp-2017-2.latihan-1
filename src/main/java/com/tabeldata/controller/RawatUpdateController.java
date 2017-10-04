@@ -55,19 +55,19 @@ public class RawatUpdateController extends HttpServlet {
         String rawatId = req.getParameter("id");
         rawatBaru.setId(Integer.valueOf(rawatId));
 
-        String rawatPasien = req.getParameter("rawatPasien");
+        String rawatPasienId = req.getParameter("rawatPasienId");
         Pasien pasien = new Pasien();
-        pasien.setId(Integer.valueOf(rawatPasien));
+        pasien.setId(Integer.valueOf(rawatPasienId));
         rawatBaru.setPasienId(pasien);
 
-        String rawatDokter = req.getParameter("rawatDokter");
+        String rawatDokterId = req.getParameter("rawatDokterId");
         Dokter dokter = new Dokter();
-        dokter.setId(Integer.valueOf(rawatDokter));
+        dokter.setId(Integer.valueOf(rawatDokterId));
         rawatBaru.setDokterId(dokter);
 
-        String rawatRuang = req.getParameter("rawatRuang");
+        String rawatRuangId = req.getParameter("rawatRuangId");
         Ruang ruang = new Ruang();
-        ruang.setId(Integer.valueOf(rawatRuang));
+        ruang.setId(Integer.valueOf(rawatRuangId));
         rawatBaru.setRuangId(ruang);
         
         rawatBaru.setTanggalRegister(Timestamp.valueOf(LocalDateTime.now()));

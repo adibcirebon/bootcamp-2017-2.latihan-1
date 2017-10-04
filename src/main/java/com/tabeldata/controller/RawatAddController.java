@@ -22,13 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Diani
- */
-@WebServlet(urlPatterns = {"/rawat/new", "/rawat/newproses"})
+@WebServlet(urlPatterns = {"/rawat/new", "/rawat/update-proses"})
 public class RawatAddController extends HttpServlet {
-    
+
     private final Logger console = LoggerFactory.getLogger(RawatAddController.class);
 
     @Override
@@ -57,33 +53,30 @@ public class RawatAddController extends HttpServlet {
         Dokter dokter = new Dokter();
         Ruang ruang = new Ruang();
 
-        //rawatBaru.setWaktuRegister(Timestamp.valueOf(LocalDateTime.now()));
-        //rawatBaru.setWaktuCheckout(Timestamp.valueOf(LocalDateTime.now()));
-
         rawatBaru.setTanggalRegister(Timestamp.valueOf(LocalDateTime.now()));
         rawatBaru.setTanggalCheckout(Timestamp.valueOf(LocalDateTime.now()));
-        
-        pasien.setId(Integer.valueOf(req.getParameter("rawatPasien")));
-        dokter.setId(Integer.valueOf(req.getParameter("rawatDokter")));
-        ruang.setId(Integer.valueOf(req.getParameter("rawatRuang")));
 
+        pasien.setId(Integer.valueOf(req.getParameter("rawatPasienId")));
+        dokter.setId(Integer.valueOf(req.getParameter("rawatDokterId")));
+        ruang.setId(Integer.valueOf(req.getParameter("rawatRuangId")));
+
+        //rawatBaru.setPasienId(pasien);
         rawatBaru.setPasienId(pasien);
         rawatBaru.setDokterId(dokter);
         rawatBaru.setRuangId(ruang);
 
-
         RawatDao rawatDao = new RawatDao();
         try {
             rawatDao.simpanRawat(rawatBaru);
-        console.info("pasienId: {}, dokterId: {}, ruangId: {}, waktuRegister: {}",
-                rawatBaru.getPasienId().getId(),
-                rawatBaru.getDokterId().getId(),
-                rawatBaru.getRuangId().getId(),
-                rawatBaru.getTanggalRegister());
-        resp.sendRedirect(req.getServletContext().getContextPath() + "/rawat/list");
+            console.info("pasienId: {}, dokterId: {}, ruangId: {}, waktuRegister: {}",
+                    rawatBaru.getPasienId().getId(),
+                    rawatBaru.getDokterId().getId(),
+                    rawatBaru.getRuangId().getId(),
+                    rawatBaru.getTanggalRegister());
+            resp.sendRedirect(req.getServletContext().getContextPath() + "/rawat/list");
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(RawatAddController.class.getName()).log(Level.SEVERE, null, ex);
-        console.error("tidak dapat menyimpan data Rawat", ex);
+            console.error("tidak dapat menyimpan data Rawat", ex);
         }
 
     }

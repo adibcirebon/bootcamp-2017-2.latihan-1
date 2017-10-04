@@ -92,8 +92,7 @@ public class RawatDao {
 
     public void simpanRawat(Rawat rwt) throws SQLException {
 
-        String sql = "insert into latihan_1.rawat (pasien_id, dokter_id, ruang_id, waktu_register, waktu_checkout)"
-                + "values (?, ?, ?, ?, ?)";
+        String sql = "insert into latihan_1.rawat (pasien_id, dokter_id, ruang_id, waktu_register, waktu_checkout) values (?, ?, ?, ?, ?)";
 
         Connection connection = KonfigDB.getDatasource().getConnection();
         PreparedStatement ps = connection.prepareStatement(sql);

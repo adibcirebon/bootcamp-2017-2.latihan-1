@@ -39,6 +39,7 @@ public class PasienUpdateController extends HttpServlet {
         Pasien pasienBaru = new Pasien();
         pasienBaru.setId(Integer.valueOf(req.getParameter("pasienId")));
         pasienBaru.setNama(req.getParameter("pasienNama"));
+        pasienBaru.setAlamat(req.getParameter("pasienAlamat"));
         pasienBaru.setTanggalLahir(java.sql.Date.valueOf(req.getParameter("pasienTanggalLahir")));
         
         

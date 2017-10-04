@@ -15,26 +15,26 @@
     <body>
         <form action="${pageContext.servletContext.contextPath}/rawat/update-proses" method="post">
             <div>
-                <label for="pasienId">Pilih Pasien</label>
-                <select name="selectPasienId" id="pasienId">
+                <label for="rawatPasienId">Pilih Pasien</label>
+                <select name="rawatPasienId" id="rawatPasienId">
                     <c:forEach items="${listPasien}" var="d">
                         <option value="${d.id}">${d.nama}</option>
                     </c:forEach>
                 </select>
             </div>
             <div>
-                <label for="dokterId">Pilih Dokter</label>
-                <select name="selectDokterId" id="dokterId">
+                <label for="rawatDokterId">Pilih Dokter</label>
+                <select name="rawatDokterId" id="rawatDokterId">
                     <c:forEach items="${listDokter}" var="d">
                         <option value="${d.id}">${d.nama}</option>
                     </c:forEach>
                 </select>
             </div>
             <div>
-                <label for="ruangId">Pilih Ruang</label>
-                <select name="selectRuangId" id="ruangId">
-                    <c:forEach items="${listRuangan}" var="d">
-                        <option value="${d.id}">${d.noRuangan}</option>
+                <label for="rawatRuangId">Pilih Ruang</label>
+                <select name="rawatRuangId" id="rawatRuangId">
+                    <c:forEach items="${listRuang}" var="d">
+                        <option value="${d.id}">${d.no_ruangan}</option>
                     </c:forEach>
                 </select>
             </div>
