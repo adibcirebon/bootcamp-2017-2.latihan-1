@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>Daftar Dokter</h1>
-        <a href="${pageContext.servletContext.contextPath}/dokter/new" >Add</a>
+        <a href="${pageContext.servletContext.contextPath}/dokter/new">Add</a>
         &nbsp;
         <table border="1">
             <thead>
